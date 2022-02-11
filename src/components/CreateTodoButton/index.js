@@ -1,10 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import { TodoContext } from '../../TodoContext';
-
-function CreateTodoButton() {
-  const { setVisibleModal } = useContext(TodoContext);
-  
+function CreateTodoButton({ setVisibleModal }) {  
   const handleShowModal = () => setVisibleModal(visible => !visible)
 
   return (

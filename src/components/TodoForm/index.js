@@ -1,9 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
-import { TodoContext } from '../../TodoContext';
-
-function TodoForm() {
-  const { setVisibleModal, saveTodos, todos } = useContext(TodoContext);
+function TodoForm({ setVisibleModal, saveTodos, todos }) {
   const [valueInput, setValueInput] = useState("");
   const newTodos = [...todos]
 
