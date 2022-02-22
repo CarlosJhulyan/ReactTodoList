@@ -11,6 +11,7 @@ import TodoForm from "../components/TodoForm";
 import TodoHeader from '../components/TodoHeader';
 
 import useTodos from '../hooks/useTodos';
+import EmpyTodos from '../components/EmptyTodos';
 
 function App() {
   const {
@@ -30,7 +31,7 @@ function App() {
 
   return(
     <div className='container'>
-      <TodoHeader>
+      <TodoHeader loading={loading}>
         <TodoCounter 
           completedTodos={completedTodos} 
           totalTodos={totalTodos} />
@@ -40,17 +41,19 @@ function App() {
           setSearch={setSearch} />
       </TodoHeader>
       
-      <TodoList>
-        {
-          !!loading ? 
-          <div className="loader">Loading...</div> : 
-          filterTodos.map((todo, key) => 
+      <TodoList
+        loading={loading}
+        searchedTodos={filterTodos}
+        totalTodos={totalTodos}
+        searchText={search}
+        onLoading={() => <p>Cargando...</p>}
+        onEmptyTodos={() => <EmpyTodos />}
+        onEmptySearch={searchText => <p>No hay resultados para "{searchText}"</p>}
+        render={todo => 
           <TodoItem 
-            key={key} {...todo}
+            key={todo.text} {...todo}
             handleCompleteTodos={handleCompleteTodos}
-            handleDeleteTodo={handleDeleteTodo} />)
-        }
-      </TodoList>
+            handleDeleteTodo={handleDeleteTodo} />} />
 
       <Modal>
         {!!visibleModal &&

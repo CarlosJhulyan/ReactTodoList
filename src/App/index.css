@@ -124,6 +124,9 @@ button:hover {
   color: white;
   cursor: pointer;
 }
+.loading {
+  opacity: 40%;
+}
 
 /* LOADING */
 .loader,
